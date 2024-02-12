@@ -7,11 +7,12 @@ export interface TUser {
   email: string;
   username: string;
   password: string;
-  contactNo?: string;
-  gender?: string;
-  website?: string;
-  address?: string;
+  contactNo: string;
+  gender: string;
+  website: string;
+  address: string;
   profileImg: string;
+  coverImg: string;
   role: "superAdmin" | "admin" | "user";
   status: "in-progress" | "blocked";
   isDeleted: boolean;

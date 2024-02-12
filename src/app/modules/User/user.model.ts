@@ -30,6 +30,9 @@ const userSchema = new Schema<TUser, UserModel>(
     profileImg: {
       type: String,
     },
+    coverImg: {
+      type: String,
+    },
     role: {
       type: String,
       enum: ["superAdmin", "admin", "user"],

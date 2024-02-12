@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { UserStatus } from "./user.constant";
 
-const userValidationSchema = z.object({
+const createUserValidationSchema = z.object({
   body: z.object({
     name: z.string({
       invalid_type_error: "Name is required",
@@ -37,6 +37,6 @@ const changeStatusValidationSchema = z.object({
 });
 
 export const UserValidation = {
-  userValidationSchema,
+  createUserValidationSchema,
   changeStatusValidationSchema,
 };

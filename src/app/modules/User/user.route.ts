@@ -16,7 +16,7 @@ router.post(
   //   req.body = JSON.parse(req.body.data);
   //   next();
   // },
-  validateRequest(UserValidation.userValidationSchema),
+  validateRequest(UserValidation.createUserValidationSchema),
   UserController.createStudent
 );
 
