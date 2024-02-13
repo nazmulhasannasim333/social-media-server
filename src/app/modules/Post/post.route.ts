@@ -2,7 +2,6 @@ import express from "express";
 import validateRequest from "../../middlewares/validateRequest";
 import { PostValidation } from "./post.validation";
 import { PostController } from "./post.controller";
-// import { upload } from "../../utils/sendImageToCloudinary";
 
 const router = express.Router();
 
