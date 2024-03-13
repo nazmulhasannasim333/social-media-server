@@ -5,7 +5,7 @@ const postSchema = new Schema<TPost>(
   {
     postText: { type: String },
     postPhoto: { type: String },
-    user: { type: Schema.Types.ObjectId, ref: "User", required: true },
+    userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
   },
   { timestamps: true }
 );

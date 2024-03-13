@@ -4,20 +4,19 @@ import validateRequest from "../../middlewares/validateRequest";
 import { UserValidation } from "./user.validation";
 import auth from "../../middlewares/auth";
 import { USER_ROLE } from "./user.constant";
-// import { upload } from "../../utils/sendImageToCloudinary";
 
 const router = express.Router();
 
-// call controller function
 router.post(
   "/register-user",
-  // upload.single("file"),
-  // (req: Request, res: Response, next: NextFunction) => {
-  //   req.body = JSON.parse(req.body.data);
-  //   next();
-  // },
   validateRequest(UserValidation.createUserValidationSchema),
-  UserController.createStudent
+  UserController.createUser
+);
+
+router.post(
+  "/login",
+  validateRequest(UserValidation.loginValidationSchema),
+  UserController.loginUser
 );
 
 router.get(

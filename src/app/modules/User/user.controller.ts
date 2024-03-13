@@ -3,7 +3,7 @@ import sendResponse from "../../utils/sendResponse";
 import httpStatus from "http-status";
 import catchAsync from "../../utils/catchAsync";
 
-const createStudent = catchAsync(async (req, res) => {
+const createUser = catchAsync(async (req, res) => {
   const userData = req.body;
   const result = await UserServices.createUserIntoDB(userData);
   //   send response
@@ -12,6 +12,20 @@ const createStudent = catchAsync(async (req, res) => {
     statusCode: httpStatus.OK,
     message: "User created successfully",
     data: result,
+  });
+});
+
+const loginUser = catchAsync(async (req, res) => {
+  const result = await UserServices.loginUser(req.body);
+  const { accessToken } = result;
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "User is logged in successfully!",
+    data: {
+      accessToken,
+    },
   });
 });
 
@@ -41,7 +55,8 @@ const changeStatus = catchAsync(async (req, res) => {
 });
 
 export const UserController = {
-  createStudent,
+  createUser,
   getMe,
   changeStatus,
+  loginUser,
 };

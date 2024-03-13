@@ -7,7 +7,7 @@ const createPostIntoDB = async (payload: TPost) => {
 };
 
 const getAllPostFromDB = async () => {
-  const result = await Post.find().populate("user");
+  const result = await Post.find().populate("userId");
   return result;
 };
 
