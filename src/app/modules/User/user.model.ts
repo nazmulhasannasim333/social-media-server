@@ -71,6 +71,14 @@ userSchema.post("save", function (doc, next) {
   next();
 });
 
+// delete password field when response
+userSchema.methods.toJSON = function () {
+  const obj = this.toObject();
+  delete obj.password;
+  delete obj.passwordHistory;
+  return obj;
+};
+
 userSchema.statics.isUserExistsByEmail = async function (email: string) {
   return await User.findOne({ email }).select("+password");
 };
