@@ -13,5 +13,6 @@ router.post(
 );
 
 router.get("/get-all-comment/:postId", CommentController.getComments);
+router.get("/get-total-comment/:postId", CommentController.getTotalComment);
 
 export const CommentRoutes = router;

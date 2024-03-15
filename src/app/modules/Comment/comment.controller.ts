@@ -26,8 +26,20 @@ const getComments = catchAsync(async (req, res) => {
     data: result,
   });
 });
+const getTotalComment = catchAsync(async (req, res) => {
+  const postId = req.params.postId;
+  const result = await CommentServices.getTotalCommentFromDB(postId);
+  //   send response
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Total comment retrieved successfully",
+    data: result,
+  });
+});
 
 export const CommentController = {
   createComment,
   getComments,
+  getTotalComment,
 };
