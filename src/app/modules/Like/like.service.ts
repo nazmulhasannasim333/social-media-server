@@ -32,8 +32,14 @@ const getTotalLikeFromDB = async (postId: string) => {
   return result;
 };
 
+const checkPostLikeFromDB = async (userId: string) => {
+  const likedPosts = await Like.find({ userId });
+  return likedPosts.map((post) => post.postId);
+};
+
 export const LikeServices = {
   createLikeIntoDB,
   getTotalLikeFromDB,
   removeLikeFromDB,
+  checkPostLikeFromDB,
 };

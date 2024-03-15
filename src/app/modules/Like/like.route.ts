@@ -13,6 +13,7 @@ router.post(
 );
 
 router.get("/get-all-likes/:postId", LikeController.getTotalLike);
+router.get("/check-liked/:userId", LikeController.checkPostLike);
 router.delete("/remove-like/:postId/:userId", LikeController.removeLike);
 
 export const LikeRoutes = router;

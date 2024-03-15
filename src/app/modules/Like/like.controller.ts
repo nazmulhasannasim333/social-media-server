@@ -38,8 +38,21 @@ const getTotalLike = catchAsync(async (req, res) => {
   });
 });
 
+const checkPostLike = catchAsync(async (req, res) => {
+  const { userId } = req.params;
+  const result = await LikeServices.checkPostLikeFromDB(userId);
+  //   send response
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Retrieved user liked posts",
+    data: result,
+  });
+});
+
 export const LikeController = {
   createLike,
   getTotalLike,
   removeLike,
+  checkPostLike,
 };
