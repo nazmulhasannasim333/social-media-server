@@ -14,5 +14,6 @@ router.post(
 
 router.get("/get-all-posts", PostController.getAllPost);
 router.delete("/delete-post/:postId", PostController.deletePost);
+router.put("/update-post/:postId", PostController.updatePost);
 
 export const PostRoutes = router;

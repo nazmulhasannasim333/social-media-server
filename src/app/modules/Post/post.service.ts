@@ -15,9 +15,15 @@ const deletePostFromDB = async (postId: string) => {
   const result = await Post.findByIdAndDelete(postId);
   return result;
 };
+const updatePostFromDB = async (postId: string, post: Partial<TPost>) => {
+  // console.log(post);
+  const result = await Post.findByIdAndUpdate(postId, post, { new: true });
+  return result;
+};
 
 export const PostServices = {
   createPostIntoDB,
   getAllPostFromDB,
   deletePostFromDB,
+  updatePostFromDB,
 };
