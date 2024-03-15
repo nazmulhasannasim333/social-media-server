@@ -11,7 +11,13 @@ const getAllPostFromDB = async () => {
   return result;
 };
 
+const deletePostFromDB = async (postId: string) => {
+  const result = await Post.findByIdAndDelete(postId);
+  return result;
+};
+
 export const PostServices = {
   createPostIntoDB,
   getAllPostFromDB,
+  deletePostFromDB,
 };

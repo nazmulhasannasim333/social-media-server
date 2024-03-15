@@ -26,7 +26,20 @@ const getAllPost = catchAsync(async (req, res) => {
   });
 });
 
+const deletePost = catchAsync(async (req, res) => {
+  const { postId } = req.params;
+  const result = await PostServices.deletePostFromDB(postId);
+  //   send response
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Post deleted successfully",
+    data: result,
+  });
+});
+
 export const PostController = {
   createPost,
   getAllPost,
+  deletePost,
 };
