@@ -50,6 +50,10 @@ const userSchema = new Schema<TUser, UserModel>(
       enum: ["in-progress", "blocked"],
       default: "in-progress",
     },
+    isVerified: {
+      type: Boolean,
+      default: false,
+    },
     isDeleted: {
       type: Boolean,
       default: false,

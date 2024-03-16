@@ -8,14 +8,17 @@ export interface TUser {
   email: string;
   username: string;
   password: string;
+  about?: string;
+  university?: string;
   contactNo?: string;
-  gender?: string;
+  gender?: ["male", "female", "other"];
   website?: string;
   address?: string;
   profileImg?: string;
   coverImg?: string;
   role: "superAdmin" | "admin" | "user";
   status: "in-progress" | "blocked";
+  isVerified: boolean;
   isDeleted: boolean;
 }
 
