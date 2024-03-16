@@ -79,10 +79,19 @@ const changeStatus = async (id: string, payload: { status: string }) => {
   return result;
 };
 
+const updateUserProfileFromDB = async (
+  userId: string,
+  userInfo: Partial<TUser>
+) => {
+  const result = User.findByIdAndUpdate(userId, userInfo);
+  return result;
+};
+
 export const UserServices = {
   createUserIntoDB,
   getMeFromDB,
   changeStatus,
   loginUser,
   userInfoFromDB,
+  updateUserProfileFromDB,
 };

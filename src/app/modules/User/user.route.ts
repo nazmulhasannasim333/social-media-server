@@ -34,4 +34,10 @@ router.post(
   UserController.changeStatus
 );
 
+router.put(
+  "/update-profile/:userId",
+  auth(USER_ROLE.superAdmin, USER_ROLE.admin, USER_ROLE.user),
+  UserController.updateUserProfile
+);
+
 export const UserRoutes = router;
