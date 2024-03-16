@@ -13,6 +13,7 @@ router.post(
 );
 
 router.get("/get-all-posts", PostController.getAllPost);
+router.get("/get-all-posts-userId/:userId", PostController.getAllPostByUserId);
 router.delete("/delete-post/:postId", PostController.deletePost);
 router.put("/update-post/:postId", PostController.updatePost);
 

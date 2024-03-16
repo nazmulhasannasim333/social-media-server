@@ -11,6 +11,11 @@ const getAllPostFromDB = async () => {
   return result;
 };
 
+const getAllPostByUserIdFromDB = async (userId: string) => {
+  const result = await Post.find({ userId }).populate("userId");
+  return result;
+};
+
 const deletePostFromDB = async (postId: string) => {
   const result = await Post.findByIdAndDelete(postId);
   return result;
@@ -26,4 +31,5 @@ export const PostServices = {
   getAllPostFromDB,
   deletePostFromDB,
   updatePostFromDB,
+  getAllPostByUserIdFromDB,
 };

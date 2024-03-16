@@ -26,6 +26,18 @@ const getAllPost = catchAsync(async (req, res) => {
   });
 });
 
+const getAllPostByUserId = catchAsync(async (req, res) => {
+  const { userId } = req.params;
+  const result = await PostServices.getAllPostByUserIdFromDB(userId);
+  //   send response
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "User post are retrieved successfully",
+    data: result,
+  });
+});
+
 const deletePost = catchAsync(async (req, res) => {
   const { postId } = req.params;
   const result = await PostServices.deletePostFromDB(postId);
@@ -55,4 +67,5 @@ export const PostController = {
   getAllPost,
   deletePost,
   updatePost,
+  getAllPostByUserId,
 };
