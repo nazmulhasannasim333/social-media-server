@@ -25,6 +25,8 @@ router.get(
   UserController.getMe
 );
 
+router.get("/user-info/:userId", UserController.userInfo);
+
 router.post(
   "/change-status/:id",
   auth(USER_ROLE.superAdmin, USER_ROLE.admin),

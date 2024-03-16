@@ -64,7 +64,11 @@ const getMeFromDB = async (email: string, role: string) => {
   if (role === "superAdmin") {
     result = await User.findOne({ email });
   }
+  return result;
+};
 
+const userInfoFromDB = async (userId: string) => {
+  const result = User.findById(userId);
   return result;
 };
 
@@ -80,4 +84,5 @@ export const UserServices = {
   getMeFromDB,
   changeStatus,
   loginUser,
+  userInfoFromDB,
 };
