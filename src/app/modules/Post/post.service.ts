@@ -1,3 +1,4 @@
+import QueryBuilder from "../../builder/QueryBuilder";
 import { TPost } from "./post.interface";
 import { Post } from "./post.model";
 
@@ -6,8 +7,14 @@ const createPostIntoDB = async (payload: TPost) => {
   return result;
 };
 
-const getAllPostFromDB = async () => {
-  const result = await Post.find().populate("userId");
+const getAllPostFromDB = async (query: Record<string, unknown>) => {
+  const postSearchableFields = ["postText"];
+
+  const productQuery = new QueryBuilder(Post.find(), query).search(
+    postSearchableFields
+  );
+
+  const result = await productQuery.modelQuery.populate("userId");
   return result;
 };
 
