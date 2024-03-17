@@ -6,11 +6,11 @@ import { Follow } from "./follow.model";
 const createFollowIntoDB = async (payload: TFollow) => {
   const { followingUserId, followerUserId } = payload;
 
-  const existingLike = await Follow.findOne({
+  const existingFollow = await Follow.findOne({
     followingUserId,
     followerUserId,
   });
-  if (existingLike) {
+  if (existingFollow) {
     throw new AppError(
       httpStatus.BAD_REQUEST,
       "You have already follow this user"
@@ -24,11 +24,11 @@ const removeFollowFromDB = async (
   followingUserId: string,
   followerUserId: string
 ) => {
-  const existingLike = await Follow.findOne({
+  const existingFollow = await Follow.findOne({
     followingUserId,
     followerUserId,
   });
-  if (existingLike) {
+  if (!existingFollow) {
     throw new AppError(
       httpStatus.BAD_REQUEST,
       "You have already unfollow this user"
