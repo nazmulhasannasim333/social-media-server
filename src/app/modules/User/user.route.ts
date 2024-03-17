@@ -25,6 +25,7 @@ router.get(
   UserController.getMe
 );
 
+router.get("/get-all-user", UserController.getAllUser);
 router.get("/user-info/:userId", UserController.userInfo);
 
 router.post(

@@ -28,6 +28,16 @@ const loginUser = catchAsync(async (req, res) => {
     },
   });
 });
+const getAllUser = catchAsync(async (req, res) => {
+  const result = await UserServices.getAllUserFromDB();
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "User are retrieved successfully",
+    data: result,
+  });
+});
 
 const getMe = catchAsync(async (req, res) => {
   const { email, role } = req.user;
@@ -85,4 +95,5 @@ export const UserController = {
   loginUser,
   userInfo,
   updateUserProfile,
+  getAllUser,
 };

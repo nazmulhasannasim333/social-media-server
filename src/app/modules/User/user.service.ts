@@ -53,6 +53,12 @@ const loginUser = async (payload: TLoginUser) => {
   };
 };
 
+const getAllUserFromDB = async () => {
+  const result = User.find();
+
+  return result;
+};
+
 const getMeFromDB = async (email: string, role: string) => {
   let result = null;
   if (role === "user") {
@@ -94,4 +100,5 @@ export const UserServices = {
   loginUser,
   userInfoFromDB,
   updateUserProfileFromDB,
+  getAllUserFromDB,
 };
