@@ -89,6 +89,17 @@ const updateUserProfileFromDB = async (
   userId: string,
   userInfo: Partial<TUser>
 ) => {
+  const currentUser = await User.findById(userId);
+  if (userInfo?.username && userInfo?.username !== currentUser?.username) {
+    const existsUsername = await User.findOne({ username: userInfo.username });
+    if (existsUsername) {
+      throw new AppError(
+        httpStatus.BAD_REQUEST,
+        "This username already exists"
+      );
+    }
+  }
+
   const result = User.findByIdAndUpdate(userId, userInfo);
   return result;
 };

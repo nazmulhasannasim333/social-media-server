@@ -14,12 +14,16 @@ const getAllPostFromDB = async (query: Record<string, unknown>) => {
     postSearchableFields
   );
 
-  const result = await productQuery.modelQuery.populate("userId");
+  const result = await productQuery.modelQuery
+    .populate("userId")
+    .sort({ createdAt: -1 });
   return result;
 };
 
 const getAllPostByUserIdFromDB = async (userId: string) => {
-  const result = await Post.find({ userId }).populate("userId");
+  const result = await Post.find({ userId })
+    .populate("userId")
+    .sort({ createdAt: -1 });
   return result;
 };
 
