@@ -1,8 +1,40 @@
+import httpStatus from "http-status";
+import AppError from "../../errors/AppError";
 import { TFollow } from "./follow.interface";
 import { Follow } from "./follow.model";
 
 const createFollowIntoDB = async (payload: TFollow) => {
+  const { followingUserId, followerUserId } = payload;
+
+  const existingLike = await Follow.findOne({
+    followingUserId,
+    followerUserId,
+  });
+  if (existingLike) {
+    throw new AppError(
+      httpStatus.BAD_REQUEST,
+      "You have already follow this user"
+    );
+  }
   const result = await Follow.create(payload);
+  return result;
+};
+
+const removeFollowFromDB = async (
+  followingUserId: string,
+  followerUserId: string
+) => {
+  const existingLike = await Follow.findOne({
+    followingUserId,
+    followerUserId,
+  });
+  if (existingLike) {
+    throw new AppError(
+      httpStatus.BAD_REQUEST,
+      "You have already unfollow this user"
+    );
+  }
+  const result = await Follow.deleteOne({ followingUserId, followerUserId });
   return result;
 };
 
@@ -14,4 +46,5 @@ const checkFollowUserFromDB = async (followingUserId: string) => {
 export const FollowServices = {
   createFollowIntoDB,
   checkFollowUserFromDB,
+  removeFollowFromDB,
 };

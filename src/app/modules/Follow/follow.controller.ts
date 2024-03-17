@@ -15,6 +15,21 @@ const createFollow = catchAsync(async (req, res) => {
   });
 });
 
+const removeFollow = catchAsync(async (req, res) => {
+  const { followingUserId, followerUserId } = req.params;
+  const result = await FollowServices.removeFollowFromDB(
+    followingUserId,
+    followerUserId
+  );
+  //   send response
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Unfollowed successfully",
+    data: result,
+  });
+});
+
 const checkFollow = catchAsync(async (req, res) => {
   const { followingUserId } = req.params;
   const result = await FollowServices.checkFollowUserFromDB(followingUserId);
@@ -30,4 +45,5 @@ const checkFollow = catchAsync(async (req, res) => {
 export const FollowController = {
   createFollow,
   checkFollow,
+  removeFollow,
 };
