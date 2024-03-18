@@ -9,6 +9,7 @@ const superUser = {
   needsPasswordChange: false,
   role: USER_ROLE.superAdmin,
   status: "in-progress",
+  isVerified: true,
   isDeleted: false,
 };
 
