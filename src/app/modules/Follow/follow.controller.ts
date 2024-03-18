@@ -54,9 +54,22 @@ const getFollowing = catchAsync(async (req, res) => {
   });
 });
 
+const getFollower = catchAsync(async (req, res) => {
+  const { followingUserId } = req.params;
+  const result = await FollowServices.getFollowerFromDB(followingUserId);
+  //   send response
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Retrieved user follower successfully!",
+    data: result,
+  });
+});
+
 export const FollowController = {
   createFollow,
   checkFollow,
   removeFollow,
   getFollowing,
+  getFollower,
 };

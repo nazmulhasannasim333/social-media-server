@@ -49,10 +49,17 @@ const getFollowingFromDB = async (followingUserId: string) => {
   );
   return result;
 };
+const getFollowerFromDB = async (followingUserId: string) => {
+  const result = await Follow.find({
+    followerUserId: followingUserId,
+  }).populate("followingUserId");
+  return result;
+};
 
 export const FollowServices = {
   createFollowIntoDB,
   checkFollowUserFromDB,
   removeFollowFromDB,
   getFollowingFromDB,
+  getFollowerFromDB,
 };
