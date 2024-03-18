@@ -9,5 +9,6 @@ router.delete(
   FollowController.removeFollow
 );
 router.get("/check-follow/:followingUserId", FollowController.checkFollow);
+router.get("/get-following/:followingUserId", FollowController.getFollowing);
 
 export const FollowRoutes = router;

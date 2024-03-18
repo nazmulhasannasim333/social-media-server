@@ -43,8 +43,16 @@ const checkFollowUserFromDB = async (followingUserId: string) => {
   return followUser.map((follow) => follow.followerUserId);
 };
 
+const getFollowingFromDB = async (followingUserId: string) => {
+  const result = await Follow.find({ followingUserId }).populate(
+    "followerUserId"
+  );
+  return result;
+};
+
 export const FollowServices = {
   createFollowIntoDB,
   checkFollowUserFromDB,
   removeFollowFromDB,
+  getFollowingFromDB,
 };
